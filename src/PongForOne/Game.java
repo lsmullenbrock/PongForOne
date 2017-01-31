@@ -8,12 +8,12 @@ import static java.lang.System.exit;
 public class Game {
     private final Canvas canvas;
     private Ball ball;
-    private Player player1;
+    private Player player;
 
     public Game(Canvas canvas) {
         this.canvas = canvas;
-        player1 = new Player(canvas);
-        ball = new Ball(canvas, player1);
+        player = new Player(canvas);
+        ball = new Ball(canvas, player);
     }
 
     private void clearCanvas() {
@@ -24,7 +24,7 @@ public class Game {
         clearCanvas();
         boolean gameOver = ball.update();
         checkStatus(gameOver, keyCode);
-        player1.update(keyCode);
+        player.update(keyCode);
     }
 
     private void checkStatus(boolean gameOver, KeyCode keyCode) {
@@ -40,8 +40,8 @@ public class Game {
             }
             switch (keyCode) {
                 case ENTER:
-                    player1 = new Player(canvas);
-                    ball = new Ball(canvas, player1);
+                    player = new Player(canvas);
+                    ball = new Ball(canvas, player);
                     break;
                 case ESCAPE:
                     exit(0);

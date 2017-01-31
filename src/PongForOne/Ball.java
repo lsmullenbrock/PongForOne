@@ -9,14 +9,14 @@ public class Ball {
     private final double xBound, yBound;
     private final double xSize, ySize;
     private double velocity;
-    private final Player player1;
+    private final Player player;
 
     private double xVelocity, yVelocity;
     private double xCoord, yCoord;
 
-    public Ball(Canvas canvas, Player player1) {
+    public Ball(Canvas canvas, Player player) {
         this.canvas = canvas;
-        this.player1 = player1;
+        this.player = player;
         xBound = canvas.getWidth();
         yBound = canvas.getHeight();
         xSize = BALL_IMAGE.getWidth();
@@ -30,13 +30,13 @@ public class Ball {
 
     private void checkCollision() {
         if(xCoord <= 0) {
-            player1.setLose(true);
+            player.setLose(true);
             xVelocity = 0;
             yVelocity = 0;
             return;
         } else if (xCoord + xSize >= xBound){
             xVelocity = -velocity;
-            player1.setScore(player1.getScore() + 1);
+            player.setScore(player.getScore() + 1);
         }
 
         if(yCoord <= 0 ) {
@@ -46,8 +46,8 @@ public class Ball {
             yVelocity = -velocity;
         }
 
-        if((xCoord >= player1.getxCoord()) && (xCoord <= player1.getxCoord() + player1.getxSize())) {
-            if((yCoord <= player1.getyCoord() + player1.getySize()) && (yCoord >= player1.getyCoord())) {
+        if((xCoord >= player.getxCoord()) && (xCoord <= player.getxCoord() + player.getxSize())) {
+            if((yCoord <= player.getyCoord() + player.getySize()) && (yCoord >= player.getyCoord())) {
                 //increase speed
                 velocity++;
                 //flip X only
@@ -74,6 +74,6 @@ public class Ball {
         move();
         checkCollision();
         render();
-        return player1.isLose();
+        return player.isLose();
     }
 }
