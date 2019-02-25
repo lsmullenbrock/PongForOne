@@ -1,2 +1,2 @@
-#Pong for One
+# Pong for One
 Simple Pong implementation for one player.
